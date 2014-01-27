@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+	version="2.1">
+	<description>Leopard Autotips Tag Library</description>
+	<display-name>autotips</display-name>
+	<tlib-version>1.2.1</tlib-version>
+	<short-name>at</short-name>
+	<uri>http://www.leopard.org/tags/autotips</uri>
+
+	<tag>
+		<description>Autotip input field</description>
+		<name>autotips</name>
+		<tag-class>org.leopard.autotips.web.taglib.AutoTipsTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Related AutoTips Id.</description>
+			<name>autoTipId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>HTML attribute id for the text input.</description>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>HTML attribute name for the text input.</description>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>HTML attribute value for the text input.</description>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Ajax parameter name for current value in the text input.</description>
+			<name>searchParamName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Result field used to display list and set in the text input.</description>
+			<name>resultFieldName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>If set to true, will not accept value without select. Default false.</description>
+			<name>forceSelect</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Minimal characters to trigger search. Default 2</description>
+			<name>minLength</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Delay in millionseconds before trigger search. Default 100</description>
+			<name>delay</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Callback javascript fragment when user selected an item. The variable "result" in this javascript fragment will be the selected item. Usually used as "doSomething(result)".</description>
+			<name>onSelect</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Callback javascript fragment a search started, the search can be canceled by return false.</description>
+			<name>onSearch</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<dynamic-attributes>true</dynamic-attributes>
+	</tag>
+
+</taglib>

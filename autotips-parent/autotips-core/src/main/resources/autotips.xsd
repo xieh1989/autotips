@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://config.core.autotips.leopard.org"
+	xmlns:tns="http://config.core.autotips.leopard.org" elementFormDefault="qualified"
+	version="1.2.0">
+	<annotation>
+		<documentation>AutoTips Configuration Schema</documentation>
+	</annotation>
+
+	<element name="autotips">
+		<complexType>
+			<sequence>
+				<element name="errorNotify" type="tns:ErrorNotify"
+					maxOccurs="1" minOccurs="0"></element>
+				<element name="autotip" type="tns:Autotip" maxOccurs="unbounded"
+					minOccurs="0"></element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<complexType name="ErrorNotify">
+		<sequence>
+			<element name="smtpConfig" maxOccurs="1" minOccurs="1"
+				type="tns:SmtpConfig">
+			</element>
+		</sequence>
+		<attribute name="fromMail" type="string" use="required"></attribute>
+		<attribute name="subject" type="string" use="required"></attribute>
+		<attribute name="toMail" type="string" use="required"></attribute>
+	</complexType>
+
+	<complexType name="FieldItem" >
+		<attribute name="name" type="string" use="required"></attribute>
+		<attribute name="desc" type="string"></attribute>
+		<attribute name="refField" type="string" use="required"></attribute>
+		<attribute name="casesensitive" type="boolean" use="optional"
+			default="false"></attribute>
+		<attribute name="analyzed" use="optional" type="boolean"
+			default="true">
+		</attribute>
+		<attribute name="nullable" use="optional" type="boolean"
+			default="false">
+		</attribute>
+	</complexType>
+
+	<complexType name="Autotip">
+		<sequence>
+			<element name="sources" type="tns:Sources" minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element name="indexPath" type="string" maxOccurs="1"
+				minOccurs="1" />
+			<element name="fields">
+				<complexType>
+					<sequence>
+						<element name="field" minOccurs="1" maxOccurs="unbounded"
+							type="tns:FieldItem">
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+		<attribute name="defaultFieldName" type="string" use="required"></attribute>
+		<attribute name="defaultHitsPer" type="int" use="optional"
+			default="20"></attribute>
+	</complexType>
+
+	<complexType name="Connection">
+		<attribute name="driver" type="string" use="required"></attribute>
+		<attribute name="url" type="string" use="required"></attribute>
+		<attribute name="uname" type="string" use="required"></attribute>
+		<attribute name="upwd" type="string" use="required"></attribute>
+	</complexType>
+
+	<complexType name="Sources">
+		<sequence>
+			<element name="source" maxOccurs="unbounded" minOccurs="1"
+				type="tns:Source">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="SmtpConfig">
+		<attribute name="host" type="string" use="required"></attribute>
+		<attribute name="port" type="int" use="required"></attribute>
+		<attribute name="username" type="string" use="optional"></attribute>
+		<attribute name="password" type="string" use="optional"></attribute>
+	</complexType>
+
+	<simpleType name="SourceType">
+		<annotation>
+			<documentation>DB</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="DB" />
+		</restriction>
+	</simpleType>
+
+	<complexType name="Source">
+		<sequence>
+			<element name="connection" type="tns:Connection" minOccurs="0" />
+			<element name="sql" type="string" minOccurs="1" />
+		</sequence>
+		<attribute name="type" use="required" type="tns:SourceType">
+		</attribute>
+		<attribute name="jndiName" use="optional" type="string" />
+	</complexType>
+</schema>
